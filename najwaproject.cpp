@@ -2,17 +2,17 @@
 #include <stdlib.h>
 #include <string.h>
 
-// Structure décrivant une voiture
+// Structure dÃ©crivant une voiture
 typedef struct Voiture {
     char marque[50];                // Marque de la voiture
-    char modele[50];                // Modèle de la voiture
-    int annee;                      // Année de fabrication de la voiture
+    char modele[50];                // ModÃ¨le de la voiture
+    int annee;                      // AnnÃ©e de fabrication de la voiture
     float prixLocationParJour;      // Prix de location par jour
     char carburant[20];             // Type de carburant
     int nombrePlaces;               // Nombre de places dans la voiture
-    char disponibilite[20];         // Disponibilité de la voiture
+    char disponibilite[20];         // DisponibilitÃ© de la voiture
     int identifiant;                // Identifiant de la voiture
-    char proprietaire[50];          // Propriétaire de la voiture
+    char proprietaire[50];          // PropriÃ©taire de la voiture
     char typeTransmission[20];      // Type de transmission de la voiture
 } Voiture;
 
@@ -27,11 +27,12 @@ void afficherMenu(void) {
     printf("* 2- Supprimer une voiture                                 *\n");
     printf("* 3- Modifier une voiture                                  *\n");
     printf("* 4- Afficher la liste des voitures                        *\n");
-    printf("* 5- Rechercher une voiture par son numéro                 *\n");
+    printf("* 5- Rechercher une voiture par son numÃ©ro                 *\n");
     printf("* 6- Trier les voitures                                    *\n");
     printf("* 7- Quitter le programme                                  *\n");
     printf("************************************************************\n");
 }
+
 void dessinerCoeur() {
     printf("    ***   ***\n");
     printf("  **   **   **\n");
@@ -44,11 +45,13 @@ void dessinerCoeur() {
     printf("      ** **\n");
     printf("        *\n");
 }
+
 void saisirNomUtilisateur(char *nomUtilisateur) {
     printf("Bienvenue dans l'application de gestion des voitures.\n");
     printf("Veuillez saisir votre nom : ");
     scanf("%s", nomUtilisateur);
 }
+
 // Fonction pour ajouter une voiture
 void ajouter(Voiture *listeVoitures, int *nombreVoitures) {
     FILE *fichier = fopen("najwa.csv", "a"); // Ouvrir le fichier en mode ajout
@@ -58,8 +61,8 @@ void ajouter(Voiture *listeVoitures, int *nombreVoitures) {
         return;
     }
 
-    // Demander le nombre de voitures à ajouter
-    printf("Entrez le nombre de voitures à ajouter : ");
+    // Demander le nombre de voitures Ã  ajouter
+    printf("Entrez le nombre de voitures Ã  ajouter : ");
     scanf("%d", nombreVoitures);
 
     for (int i = 0; i < *nombreVoitures; i++) {
@@ -68,11 +71,11 @@ void ajouter(Voiture *listeVoitures, int *nombreVoitures) {
         scanf("%s", listeVoitures[i].marque);
         fprintf(fichier, "%s\n", listeVoitures[i].marque);
         
-        printf("Entrez le modèle de la voiture : ");
+        printf("Entrez le modÃ¨le de la voiture : ");
         scanf("%s", listeVoitures[i].modele);
         fprintf(fichier, "%s\n", listeVoitures[i].modele);
 
-        printf("Entrez l'année de la voiture : ");
+        printf("Entrez l'annÃ©e de la voiture : ");
         scanf("%d", &listeVoitures[i].annee);
         fprintf(fichier, "%d\n", listeVoitures[i].annee);
 
@@ -88,7 +91,7 @@ void ajouter(Voiture *listeVoitures, int *nombreVoitures) {
         scanf("%d", &listeVoitures[i].nombrePlaces);
         fprintf(fichier, "%d\n", listeVoitures[i].nombrePlaces);
 
-        printf("Entrez la disponibilité : ");
+        printf("Entrez la disponibilitÃ© : ");
         scanf("%s", listeVoitures[i].disponibilite);
         fprintf(fichier, "%s\n", listeVoitures[i].disponibilite);
 
@@ -96,7 +99,7 @@ void ajouter(Voiture *listeVoitures, int *nombreVoitures) {
         scanf("%d", &listeVoitures[i].identifiant);
         fprintf(fichier, "%d\n", listeVoitures[i].identifiant);
 
-        printf("Entrez le propriétaire : ");
+        printf("Entrez le propriÃ©taire : ");
         scanf("%s", listeVoitures[i].proprietaire);
         fprintf(fichier, "%s\n", listeVoitures[i].proprietaire);
 
@@ -113,98 +116,109 @@ void afficherListeVoitures(Voiture *listeVoitures, int nombreVoitures) {
     printf("Liste des voitures :\n");
     for (int i = 0; i < nombreVoitures; i++) {
         // Afficher les informations de chaque voiture
-        printf("Voiture %d :\n", i+1);
+        printf("Voiture %d :\n", i + 1);
         printf("Marque : %s\n", listeVoitures[i].marque);
-        printf("Modèle : %s\n", listeVoitures[i].modele);
-        printf("Année : %d\n", listeVoitures[i].annee);
+        printf("ModÃ¨le : %s\n", listeVoitures[i].modele);
+        printf("AnnÃ©e : %d\n", listeVoitures[i].annee);
         printf("Prix de location par jour : %.2f\n", listeVoitures[i].prixLocationParJour);
         printf("Carburant : %s\n", listeVoitures[i].carburant);
         printf("Nombre de places : %d\n", listeVoitures[i].nombrePlaces);
-        printf("Disponibilité : %s\n", listeVoitures[i].disponibilite);
+        printf("DisponibilitÃ© : %s\n", listeVoitures[i].disponibilite);
         printf("Identifiant : %d\n", listeVoitures[i].identifiant);
-        printf("Propriétaire : %s\n", listeVoitures[i].proprietaire);
+        printf("PropriÃ©taire : %s\n", listeVoitures[i].proprietaire);
         printf("Type de transmission : %s\n", listeVoitures[i].typeTransmission);
         printf("\n");
     }
 }
 
 // Fonction pour supprimer une voiture
-void supprimer(Voiture *listeVoitures, int *nombreVoitures, int indice) {
-    if (indice < 0 || indice >= *nombreVoitures) {
-        printf("Indice invalide.\n");
-        return;
+void supprimer(Voiture *listeVoitures, int *n, int id) {
+    int indice = -1;
+    for (int i = 0; i < *n; i++) {
+        if (listeVoitures[i].identifiant == id) {
+            indice = i;
+            break;
+        }
     }
-
-    // Déplacer les voitures après l'indice vers la gauche pour remplir l'espace de la voiture supprimée
-    for (int i = indice; i < *nombreVoitures - 1; i++) {
-        listeVoitures[i] = listeVoitures[i + 1];
+    if (indice != -1) {
+        for (int i = indice; i < *n - 1; i++) {
+            listeVoitures[i] = listeVoitures[i + 1];
+        }
+        (*n)--;
+        printf("Voiture supprimÃ©e avec succÃ¨s.\n");
+    } else {
+        printf("Voiture non trouvÃ©e.\n");
     }
-
-    // Diminuer le nombre total de voitures
-    (*nombreVoitures)--;
 }
 
 // Fonction pour modifier les informations d'une voiture
-void modifier(Voiture *listeVoitures, int nombreVoitures, int indice) {
-    if (indice < 0 || indice >= nombreVoitures) {
-        printf("Indice invalide.\n");
-        return;
+void modifier(Voiture *listeVoitures, int n, int id) {
+    int trouve = 0;
+    for (int i = 0; i < n; i++) {
+        if (listeVoitures[i].identifiant == id) {
+            printf("Entrez la nouvelle marque de la voiture : ");
+            scanf("%s", listeVoitures[i].marque);
+
+            printf("Entrez le nouveau modÃ¨le de la voiture : ");
+            scanf("%s", listeVoitures[i].modele);
+
+            printf("Entrez la nouvelle annÃ©e de la voiture : ");
+            scanf("%d", &listeVoitures[i].annee);
+
+            printf("Entrez le nouveau prix de location par jour : ");
+            scanf("%f", &listeVoitures[i].prixLocationParJour);
+
+            printf("Entrez le nouveau type de carburant : ");
+            scanf("%s", listeVoitures[i].carburant);
+
+            printf("Entrez le nouveau nombre de places : ");
+            scanf("%d", &listeVoitures[i].nombrePlaces);
+
+            printf("Entrez la nouvelle disponibilitÃ© : ");
+            scanf("%s", listeVoitures[i].disponibilite);
+
+            printf("Entrez le nouvel identifiant : ");
+            scanf("%d", &listeVoitures[i].identifiant);
+
+            printf("Entrez le nouveau propriÃ©taire : ");
+            scanf("%s", listeVoitures[i].proprietaire);
+
+            printf("Entrez le type de transmission : ");
+            scanf("%s", listeVoitures[i].typeTransmission);
+
+            trouve = 1;
+            printf("Voiture modifiÃ©e avec succÃ¨s.\n");
+            break;
+        }
     }
-
-    // Demander et enregistrer les nouvelles informations de la voiture
-    printf("Entrez la nouvelle marque de la voiture : ");
-    scanf("%s", listeVoitures[indice].marque);
-
-    printf("Entrez le nouveau modèle de la voiture : ");
-    scanf("%s", listeVoitures[indice].modele);
-
-    printf("Entrez la nouvelle année de la voiture : ");
-    scanf("%d", &listeVoitures[indice].annee);
-
-    printf("Entrez le nouveau prix de location par jour : ");
-    scanf("%f", &listeVoitures[indice].prixLocationParJour);
-
-    printf("Entrez le nouveau type de carburant : ");
-    scanf("%s", listeVoitures[indice].carburant);
-
-    printf("Entrez le nouveau nombre de places : ");
-    scanf("%d", &listeVoitures[indice].nombrePlaces);
-
-    printf("Entrez la nouvelle disponibilité : ");
-    scanf("%s", listeVoitures[indice].disponibilite);
-
-    printf("Entrez le nouvel ID : ");
-    scanf("%d", &listeVoitures[indice].identifiant);
-
-    printf("Entrez le nouveau propriétaire : ");
-    scanf("%s", listeVoitures[indice].proprietaire);
-
-    printf("Entrez le nouveau type de transmission : ");
-    scanf("%s", listeVoitures[indice].typeTransmission);
+    if (!trouve) {
+        printf("Voiture non trouvÃ©e.\n");
+    }
 }
 
-void rechercherVoitureParnum(Voiture *listeVoitures, int nombreVoitures) {
-    int indice;
-    printf("Entrez l'indice de la voiture à rechercher : ");
-    scanf("%d", &indice);
-
-    if (indice < 0 || indice >= nombreVoitures) {
-        printf("Indice invalide.\n");
-        return;
+// Fonction pour rechercher une voiture par son ID
+void rechercherParID(Voiture *listeVoitures, int n, int id) {
+    int trouve = 0;
+    for (int i = 0; i < n; i++) {
+        if (listeVoitures[i].identifiant == id) {
+            printf("Voiture trouvÃ©e :\n");
+            printf("Marque : %s\n", listeVoitures[i].marque);
+            printf("ModÃ¨le : %s\n", listeVoitures[i].modele);
+            printf("AnnÃ©e : %d\n", listeVoitures[i].annee);
+            printf("Prix de location par jour : %.2f\n", listeVoitures[i].prixLocationParJour);
+            printf("Carburant : %s\n", listeVoitures[i].carburant);
+            printf("Nombre de places : %d\n", listeVoitures[i].nombrePlaces);
+            printf("DisponibilitÃ© : %s\n", listeVoitures[i].disponibilite);
+            printf("Identifiant : %d\n", listeVoitures[i].identifiant);
+            printf("PropriÃ©taire : %s\n", listeVoitures[i].proprietaire);
+            printf("Type de transmission : %s\n", listeVoitures[i].typeTransmission);
+            trouve = 1;
+            break;
+        }
     }
-
-    // Afficher les informations de la voiture à l'indice donné
-    printf("Voiture %d :\n", indice + 1);
-    printf("Marque : %s\n", listeVoitures[indice].marque);
-    printf("Modèle : %s\n", listeVoitures[indice].modele);
-    printf("Année : %d\n", listeVoitures[indice].annee);
-    printf("Prix de location par jour : %.2f\n", listeVoitures[indice].prixLocationParJour);
-    printf("Carburant : %s\n", listeVoitures[indice].carburant);
-    printf("Nombre de places : %d\n", listeVoitures[indice].nombrePlaces);
-    printf("Disponibilité : %s\n", listeVoitures[indice].disponibilite);
-    printf("Identifiant : %d\n", listeVoitures[indice].identifiant);
-    printf("Propriétaire : %s\n", listeVoitures[indice].proprietaire);
-    printf("Type de transmission : %s\n", listeVoitures[indice].typeTransmission);
+    if (!trouve) {
+        printf("Voiture non trouvÃ©e.\n");
+    }
 }
 
 // Fonction pour trier les voitures par marque et prix de location par jour
@@ -213,15 +227,15 @@ void trier(Voiture *listeVoitures, int nombreVoitures) {
         for (int j = 0; j < nombreVoitures - i - 1; j++) {
             // Trie d'abord par marque
             if (strcmp(listeVoitures[j].marque, listeVoitures[j + 1].marque) > 0) {
-                // Échange des éléments
+                // Ã‰change des Ã©lÃ©ments
                 Voiture temp = listeVoitures[j];
                 listeVoitures[j] = listeVoitures[j + 1];
                 listeVoitures[j + 1] = temp;
             }
-            // Si les marques sont les mêmes, trie par prix de location par jour
+            // Si les marques sont les mÃªmes, trie par prix de location par jour
             else if (strcmp(listeVoitures[j].marque, listeVoitures[j + 1].marque) == 0 &&
                      listeVoitures[j].prixLocationParJour > listeVoitures[j + 1].prixLocationParJour) {
-                // Échange des éléments
+                // Ã‰change des Ã©lÃ©ments
                 Voiture temp = listeVoitures[j];
                 listeVoitures[j] = listeVoitures[j + 1];
                 listeVoitures[j + 1] = temp;
@@ -234,16 +248,16 @@ void trier(Voiture *listeVoitures, int nombreVoitures) {
 int main() {
     char nomUtilisateur[50];
     int choix, nombreVoitures = 0;
-    Voiture *listeVoitures = malloc(sizeof(Voiture) * 100); // Allouer de la mémoire pour le tableau de voitures
+    Voiture *listeVoitures = malloc(sizeof(Voiture) * 100); // Allouer de la mÃ©moire pour le tableau de voitures
     printf("************************************************************\n");
     printf("*                   GESTION DES VOITURES                    *\n");
     printf("************************************************************\n");
-                   printf("          ______\n");
-                   printf("       //  ||  \\\\ \n");
-                   printf(" _____//___||___\\\\_\n");
-                   printf(" )  _          _   |\n");
-                   printf(" |_/ \\________/ \\__|\n");
-                   printf("___\\_/________\\_/______\n");
+    printf("          ______\n");
+    printf("       //  ||  \\\\ \n");
+    printf(" _____//___||___\\\\_\n");
+    printf(" )  _          _   |\n");
+    printf(" |_/ \\________/ \\__|\n");
+    printf("___\\_/________\\_/______\n");
 
     saisirNomUtilisateur(nomUtilisateur);
     afficherMenu(); // Afficher le menu du programme
@@ -256,46 +270,55 @@ int main() {
             case 1:
                 ajouter(listeVoitures, &nombreVoitures); // Appeler la fonction pour ajouter des voitures
                 break;
-            case 2:
-                int indice_suppr;
-                printf("Entrez l'indice de la voiture à supprimer : ");
-                scanf("%d", &indice_suppr);
-                supprimer(listeVoitures, &nombreVoitures, indice_suppr);
+            case 2: {
+                int id_supprimer;
+                printf("Entrez l'ID de la voiture Ã  supprimer : ");
+                scanf("%d", &id_supprimer);
+                supprimer(listeVoitures, &nombreVoitures, id_supprimer);
                 break;
-            case 3:
-                int indice_modif;
-                printf("Entrez l'indice de la voiture à modifier : ");
-                scanf("%d", &indice_modif);
-                modifier(listeVoitures, nombreVoitures, indice_modif);
+            }
+            case 3: {
+                int id_modifier;
+                printf("Entrez l'ID de la voiture Ã  modifier : ");
+                scanf("%d", &id_modifier);
+                modifier(listeVoitures, nombreVoitures, id_modifier);
                 break;
+            }
             case 4:
                 afficherListeVoitures(listeVoitures, nombreVoitures); // Appeler la fonction pour afficher la liste des voitures
                 break;
-            case 5:
-                rechercherVoitureParnum(listeVoitures, nombreVoitures);
+            case 5: {
+                int id_rechercher;
+                printf("Entrez l'ID de la voiture Ã  rechercher : ");
+                scanf("%d", &id_rechercher);
+                rechercherParID(listeVoitures, nombreVoitures, id_rechercher);
                 break;
+            }
             case 6:
                 trier(listeVoitures, nombreVoitures); // Appeler la fonction pour trier les voitures
                 break;
             case 7:
-                printf("Merci d'avoir utilisé le programme. Au revoir!\n");
+                printf("Merci d'avoir utilisÃ© le programme. Au revoir!\n");
                 dessinerCoeur();
                 break;
             default:
                 printf("Choix invalide.\n");
         }
 
-        afficherMenu(); // Afficher à nouveau le menu
+
+        afficherMenu(); // Afficher Ã  nouveau le menu
         printf("Entrez votre choix : ");
         scanf("%d", &choix);
     }
-  switch (choix) {
-           case 7:
-                printf("Merci d'avoir utilisé le programme. Au revoir!\n");
+switch (choix) {
+
+            case 7:
+                printf("Merci d'avoir utilisÃ© le programme. Au revoir!\n");
                 dessinerCoeur();
-                break;}
-    free(listeVoitures); // Libérer la mémoire allouée pour le tableau de voitures
+                break;
+         
+        }
+    free(listeVoitures); // LibÃ©rer la mÃ©moire allouÃ©e pour le tableau de voitures
 
     return 0;
 }
-
